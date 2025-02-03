@@ -1,3 +1,9 @@
+.mainOuterContainer {
+  min-height: 88vh;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+}
 .container {
   max-width: 25vw;
   min-height: 60vh;
@@ -21,17 +27,7 @@
   flex-direction: column;
   gap: 30px;
 }
-#login_form input {
-  width: 100%;
-  padding: 10px;
-  background-color: rgb(255, 255, 255);
-  border-radius: 15px;
-  border: 2px solid transparent;
-  box-shadow: -3px 3px 20px 2px #9b9b9b;
-}
-#login_form input:focus {
-  outline: 3px solid rgb(236, 90, 216);
-}
+
 .login_signup_btn {
   display: flex;
   justify-content: space-evenly;
@@ -41,48 +37,8 @@
 
 .loginButton {
   width: 100%;
-  padding: 10px;
-  border-radius: 15px;
-  font-size: inherit;
-  border: 1px solid transparent;
-  box-shadow: -3px 3px 20px 2px #9b9b9b;
-  background-color: rgb(229 52 215);
-  color: white;
 }
 
 .signUpButton {
   width: 100%;
-  padding: 10px;
-  border-radius: 15px;
-  font-size: inherit;
-  box-shadow: -3px 3px 20px 2px #9b9b9b;
-  background-color: rgb(102, 132, 243);
-  color: white;
-  text-decoration: none;
-  text-align: center;
-}
-.loginButton:hover {
-  transition: ease-in-out;
-  transition-duration: 0.5s;
-  transform: scale(1.03);
-
-  background-image: linear-gradient(
-    to right,
-    rgb(102, 132, 243),
-    rgb(234 112 224)
-  );
-  color: white;
-}
-
-.signUpButton:hover {
-  transition-duration: 0.5s;
-  transform: scale(1.03);
-
-  background-image: linear-gradient(
-    to right,
-
-    rgb(234 112 224),
-    rgb(102, 132, 243)
-  );
-  color: white;
 }

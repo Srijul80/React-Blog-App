@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./Signup.module.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../utils/FirebaseDB";
 import toast from "react-hot-toast";
@@ -39,49 +39,56 @@ const SignUp = () => {
     }
   };
   return (
-    <div className={style.container}>
-      <h2 id={style.loginHeading}>Sign Up</h2>
-      <form id={style["signup_form"]} onSubmit={handleSubmit}>
-        <div className={style.email}>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            required
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </div>
-        <div className={style.password}>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            required
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </div>
-        <div className={style.confirmPassword}>
-          <input
-            type="password"
-            placeholder="Confirm your password"
-            required
-            onChange={(e) => {
-              setConfirmPassword(e.target.value);
-            }}
-          />
-        </div>
+    <div className={`${style.mainOuterContainer} container-fluid`}>
+      {" "}
+      <div className={style.container}>
+        <h2 id={style.loginHeading}>Sign Up</h2>
+        <form id={style["signup_form"]} onSubmit={handleSubmit}>
+          <div className={`${style.email} mb-3`}>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter your email"
+              required
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </div>
+          <div className={`${style.password} mb-3 `}>
+            <input
+              type="password"
+              className="form-control p-2"
+              placeholder="Enter your password"
+              required
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
+          <div className={`${style.password} mb-3 `}>
+            <input
+              type="password"
+              className="form-control p-2"
+              placeholder="Confirm your password"
+              required
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+              }}
+            />
+          </div>
 
-        <div className={style["login_signup_btn"]}>
-          <button type="submit" className={style.signUpButton}>
-            Sign Up
-          </button>
-          <Link to={"/login"} className={style.loginButton}>
-            Login
-          </Link>
-        </div>
-      </form>
+          <div className={style["login_signup_btn"]}>
+            <button type="submit" className="btn btn-primary">
+              Sign Up
+            </button>
+
+            <NavLink to={"/login"} className="btn btn-danger">
+              Login
+            </NavLink>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

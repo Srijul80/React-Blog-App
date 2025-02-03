@@ -28,39 +28,44 @@ const Login = () => {
       });
   };
   return (
-    <div className={style.container}>
-      <h2 id={style.loginHeading}>Login</h2>
-      <form id={style.login_form} onSubmit={handleLogin}>
-        <div className={style.email}>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            required
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-        </div>
-        <div className={style.password}>
-          <input
-            type="password"
-            placeholder="Enter your password"
-            required
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </div>
-        <div className={style["login_signup_btn"]}>
-          <button type="submit" className={style.loginButton}>
-            Login
-          </button>
+    <div className={`${style.mainOuterContainer} container-fluid`}>
+      <div className={`${style.container}`}>
+        <h2 id={style.loginHeading}>Login</h2>
+        <form id={style["login_form"]} onSubmit={handleLogin}>
+          <div className={`${style.email} mb-3`}>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter your email"
+              required
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+          </div>
+          <div className={`${style.password} mb-3 `}>
+            <input
+              type="password"
+              className="form-control p-2"
+              placeholder="Enter your password"
+              required
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+          </div>
 
-          <NavLink to={"/signup"} className={style.signUpButton}>
-            Sign Up
-          </NavLink>
-        </div>
-      </form>
+          <div className={style["login_signup_btn"]}>
+            <button type="submit" className="btn btn-primary">
+              Login
+            </button>
+
+            <NavLink to={"/signup"} className="btn btn-danger">
+              Sign Up
+            </NavLink>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

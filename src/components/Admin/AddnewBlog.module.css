@@ -1,0 +1,29 @@
+.container {
+  max-width: 45vw;
+  width: 100%;
+  border: 2px solid transparent;
+  min-height: 50vh;
+  padding: 30px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: -3px 3px 20px 2px #9b9b9b;
+}
+.blogTitle input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1.2em;
+}
+
+.blogimage input {
+  margin: 10px 0;
+}
+
+.blogText textarea {
+  width: 100%;
+  margin: 10px 0;
+  font-size: 1.2em;
+  padding: 10px;
+}

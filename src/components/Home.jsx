@@ -1,22 +1,18 @@
-import React from "react";
-import Layout from "../layouts/Layout";
-import "../components/Home.css";
+import React, { useEffect } from "react";
+import style from "../components/Home.module.css";
 import Blogs from "./Blogs";
 
-export const Home = () => {
+export const Home = ({ data, fetchData }) => {
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexWrap: "wrap",
-        padding: "50px",
-        justifyContent: "space-evenly",
-      }}
-    >
-      <Blogs />
-      <Blogs />
-      <Blogs />
-      <Blogs />
-    </div>
+    <>
+      <div className={`${style.homeContainer} container-fluid`}>
+        {data.map((item) => (
+          <Blogs key={item.id} item={item} />
+        ))}
+      </div>
+    </>
   );
 };

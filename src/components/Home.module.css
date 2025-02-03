@@ -1,0 +1,9 @@
+.homeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 50px;
+  justify-content: space-evenly;
+  gap: 50px;
+
+  min-height: 88vh;
+}

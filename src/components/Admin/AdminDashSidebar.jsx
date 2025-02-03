@@ -4,14 +4,21 @@ import { NavLink, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { signOut } from "firebase/auth";
 import { auth } from "../../utils/FirebaseDB";
+import { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
-const AdminDashSidebar = () => {
+const AdminDashSidebar = ({ setHideAndShowDisplay, hideAndShowDisplay }) => {
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
+  const handleDisplay = () => {
+    setHideAndShowDisplay(!hideAndShowDisplay);
+  };
   const handleLogout = async () => {
-    let confirmLogout = confirm("Are you sure to Logout");
-    console.log(confirmLogout);
-    if (confirmLogout) {
+    if (show) {
       await signOut(auth)
         .then(() => {
           toast.success("Signout Succesful");
@@ -26,15 +33,47 @@ const AdminDashSidebar = () => {
   };
   return (
     <>
-      <div className={style["sidebar-container"]}>
+      <div
+        className={`${style["sidebar-container"]}  navbar bg-primary sticky-top`}
+      >
         <h1 className={style.adminName}>Hello Admin</h1>
         <div className={style.actions}>
           <NavLink className={style.dashLinks} to={"/"}>
-            Home
+            <Button variant="outline-light"> Home</Button>
           </NavLink>
-          <NavLink className={style.dashLinks} onClick={handleLogout}>
-            Logout
-          </NavLink>
+
+          {hideAndShowDisplay ? (
+            <Button variant="outline-light" onClick={handleDisplay}>
+              Hide Create Blog
+            </Button>
+          ) : (
+            <Button variant="outline-light" onClick={handleDisplay}>
+              Create Blog
+            </Button>
+          )}
+          <Button variant="outline-light" onClick={handleShow}>
+            Log Out
+          </Button>
+
+          <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Log out</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Do you wanna Logout?</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => {
+                  handleClose(), handleLogout();
+                }}
+              >
+                Log Out
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
     </>
