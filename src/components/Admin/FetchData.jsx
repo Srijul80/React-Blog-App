@@ -76,27 +76,26 @@ const FetchData = ({
                   <Button variant="danger" onClick={() => handleShow(item.id)}>
                     Delete
                   </Button>
-
-                  <Modal show={show} onHide={handleClose}>
-                    <Modal.Header closeButton>
-                      <Modal.Title>Delete Data</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>Are you sure to delete blog data?</Modal.Body>
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={handleClose}>
-                        Close
-                      </Button>
-                      <Button variant="primary" onClick={handleDelete}>
-                        OK
-                      </Button>
-                    </Modal.Footer>
-                  </Modal>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Data</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure to delete blog data?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleDelete}>
+            OK
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };
