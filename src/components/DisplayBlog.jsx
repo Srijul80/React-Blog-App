@@ -3,12 +3,12 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import style from "./DisplayBlog.module.css";
-import image1 from "../Images/blogimg.jpg";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 function DisplayBlog({ data }) {
   let { id } = useParams();
+  const navigate = useNavigate();
   const [singleBlog, setSingleBlog] = useState([]);
   const [otherBlogs, setOtherBlogs] = useState([]);
   const [comment, setComment] = useState("");
@@ -36,12 +36,12 @@ function DisplayBlog({ data }) {
 
     setOtherBlogs(OtherfilterData);
   }, [data, id]);
-  const handleReadmore = (id) => {
-    const filterData1 = data.filter((item) => {
-      return item.id === id;
+  const handleReadmore = (blogId) => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
-    setSingleBlog(filterData1);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    navigate(`/displayblog/${blogId}`);
   };
 
   return (
@@ -49,7 +49,10 @@ function DisplayBlog({ data }) {
       <Container>
         <Row className=" p-3">
           <Col xs={8} className="p-2">
-            <img src={image1} style={{ width: "100%", marginBottom: "2rem" }} />
+            <img
+              src={singleBlog[0]?.image}
+              style={{ width: "100%", marginBottom: "2rem" }}
+            />
             <h2 style={{ marginBottom: "1rem" }}> {singleBlog[0]?.title}</h2>
             <p>{singleBlog[0]?.content}</p>
             <div className={`${style.commentSection} container-fluid  p-2`}>
@@ -86,7 +89,7 @@ function DisplayBlog({ data }) {
                   <Row className="m-2 p-3 w-100 ">
                     <Col>
                       <Card style={{ width: "100%" }}>
-                        <Card.Img variant="top" src={image1} />
+                        <Card.Img variant="top" src={item.image} />
                         <Card.Body>
                           <Card.Title>{item.title.slice(0, 50)}</Card.Title>
                           <Card.Text>{item.content.slice(0, 100)}</Card.Text>

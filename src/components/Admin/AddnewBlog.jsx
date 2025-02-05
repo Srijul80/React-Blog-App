@@ -11,16 +11,19 @@ const AddnewBlog = ({
 }) => {
   const [blogTitle, setBlogTitle] = useState("");
   const [blogContent, setBlogContent] = useState("");
+  const [imagePath, setImagePath] = useState("");
 
   useEffect(() => {
     if (editBlog) {
       setBlogTitle(editBlog[0]?.title || "");
       setBlogContent(editBlog[0]?.content || "");
+      setImagePath(editBlog[0]?.image || "");
     }
   }, [editBlog]);
 
   const handleBlogPublish = async (e) => {
     e.preventDefault();
+    console.log(imagePath);
     try {
       if (editButtonClicked && editBlog) {
         // Update existing blog
@@ -28,17 +31,20 @@ const AddnewBlog = ({
         await updateDoc(blogRef, {
           title: blogTitle.slice(0, 50),
           content: blogContent.slice(0, 5000),
+          image: imagePath,
         });
       } else {
         // Add new blog
         await addDoc(collection(db, "blogs"), {
           title: blogTitle.slice(0, 50),
           content: blogContent.slice(0, 5000),
+          image: imagePath,
         });
       }
 
       setBlogTitle("");
       setBlogContent("");
+      setImagePath("");
       fetchData();
     } catch (err) {
       console.error("Error adding/updating document: ", err);
@@ -75,8 +81,17 @@ const AddnewBlog = ({
             </div>
 
             <div className={style.blogimage}>
-              <h2>Upload Blog Image</h2>
-              <input type="file" placeholder="Upload Blog Image" />
+              <h2>Enter Image path</h2>
+              <input
+                type="text"
+                placeholder="paste you input path here.."
+                className="w-100 p-2"
+                onChange={(e) => {
+                  setImagePath(e.target.value);
+                }}
+                value={imagePath}
+                required
+              />
             </div>
 
             <div>

@@ -47,6 +47,7 @@ function App() {
       element: <AdminDashboard />,
     },
   ]);
+
   return (
     <>
       <RouterProvider router={router} />

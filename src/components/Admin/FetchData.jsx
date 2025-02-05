@@ -46,10 +46,11 @@ const FetchData = ({
         <h2 className="container text-center mb-5 border  shadow p-3  bg-body rounded">
           BLOGS DATA
         </h2>
-        <table className="table table-bordered table-hover border-dark ">
+        <table className="table table-bordered table-hover border-dark mb-4">
           <thead className="table-dark text-center">
             <tr>
               <th scope="col">#Id</th>
+              <th scope="col">Image</th>
               <th scope="col">Title</th>
               <th scope="col">Content</th>
               <th scope="col">Edit</th>
@@ -60,6 +61,9 @@ const FetchData = ({
             {data.map((item) => (
               <tr key={item.id}>
                 <td>{item.id}</td>
+                <td>
+                  <img src={item.image} style={{ width: "100px" }} />
+                </td>
                 <td>{item.title}</td>
                 <td>{item.content}</td>
                 <td>

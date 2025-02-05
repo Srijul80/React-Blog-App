@@ -1,6 +1,5 @@
 import React from "react";
 import style from "../components/Blogs.module.css";
-import demoImg from "../Images/blogimg.jpg";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
@@ -16,7 +15,11 @@ const Blogs = ({ item }) => {
         className={`${style.blogCard} shadow  bg-body rounded`}
         style={{ width: "18rem" }}
       >
-        <Card.Img variant="top" src={demoImg} />
+        <Card.Img
+          variant="top"
+          src={item.image}
+          style={{ minHeight: "200px", maxHeight: "200px" }}
+        />
         <Card.Body>
           <div className={style.blgsTitleAndContent}>
             <Card.Title>{item.title.slice(0, 50)}</Card.Title>

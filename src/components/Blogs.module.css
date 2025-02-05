@@ -2,8 +2,9 @@
   height: 160px;
 }
 .blogCard {
-  transition: all 0.8s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .blogCard:hover {
-  transform: scale(1.1);
+  transform: translateY(-5px);
+  box-shadow: none !important;
 }
